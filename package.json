@@ -1,0 +1,23 @@
+{
+  "name": "sample-express-ejs-mongo",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manolaz/sample-express-ejs-mongo.git"
+  },
+  "author": "tristan-nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manolaz/sample-express-ejs-mongo/issues"
+  },
+  "homepage": "https://github.com/manolaz/sample-express-ejs-mongo#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  }
+}
