@@ -2,8 +2,9 @@
  * Module dependencies.
  */
 var db = require('../../db');
+const User = require("../../models/user");
 
-// exports.engine = "hbs";
+exports.engine = "hbs";
 
 exports.before = function (req, res, next) {
   var id = req.params.user_id;
@@ -19,7 +20,12 @@ exports.before = function (req, res, next) {
 };
 
 exports.list = function (req, res, next) {
-  res.render("list", { users: db.users });
+  User.find()
+    .exec(function (err, list_users) {
+      if (err) { return next(err); }
+      //Successful, so render
+      res.render('list', { users: list_users });
+    });
 };
 
 exports.edit = function (req, res, next) {
@@ -34,5 +40,5 @@ exports.update = function (req, res, next) {
   var body = req.body;
   req.user.name = body.user.name;
   res.message("Information updated!");
-  res.redirect("/user/" + req.user.id);
+  res.redirect("/user/" + req.user._id);
 };

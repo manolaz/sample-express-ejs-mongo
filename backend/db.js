@@ -18,22 +18,22 @@ app.listen(port, function () {
 
 const User = require("./models/user");
 
-User
-  .find()
-  .then(doc => {
-    console.log(doc)
-  })
-  .catch(err => {
-    console.error(err)
-  })
+// User
+//   .find()
+//   .then(doc => {
+//     console.log(doc)
+//   })
+//   .catch(err => {
+//     console.error(err)
+//   })
 // const db = async () => {
 //   const allUsers = await User.find().all();
 //   console.log(allUsers);
 //   return allUsers.json();
 // };
 
-// var users = exports.users = async () => {
-//     const allUsers = await User.find().all();
-//     console.log(allUsers);
-//     return allUsers.json();
-//   };
+var users = exports.users = async () => {
+    const allUsers = await User.find().all();
+    console.log(allUsers);
+    return allUsers.json();
+  };
