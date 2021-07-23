@@ -11,7 +11,15 @@
   <p>Click a user below to view their contact.</p>
   <ul>
     {{#each users}}
-      <li><a href="/user/{{_id}}">{{email}}</a></li>
+      <li><a href="/user/{{_id}}">
+      <br/>
+      Fullname = {{first_name}} {{last_name}}
+      <br/>
+      Email={{email}}
+      <br/>
+      Phone={{phone}}
+      </a>
+      </li>
     {{/each}}
   </ul>
 </body>

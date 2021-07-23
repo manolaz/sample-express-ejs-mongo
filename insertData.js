@@ -53,7 +53,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 // const Cornelia = new User({"first_name":"Cornelia","last_name":"O'Rudden","email":"corudden17@nsw.gov.au","phone":"862-185-5423"});
-var usersObj = require("../mock.json");
+var usersObj = require("./mock.json");
 // User.insertMany(usersObj);
 
 // FIND OneUser
