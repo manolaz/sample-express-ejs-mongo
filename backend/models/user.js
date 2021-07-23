@@ -1,6 +1,5 @@
 // import mongoose from "mongoose";
 let mongoose = require('mongoose')
-let validator = require('validator')
 
 const userSchema = new mongoose.Schema({
   first_name: {
@@ -15,33 +14,15 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
     unique: true,
-    lowercase: true,
-    validate: (value) => {
-      return validator.isEmail(value)
-    }
+    required: true,
   },
   phone: {
-    type: Number,
+    type: String,
     unique: true,
     required: false,
   },
 });
 
-userSchema.statics.getUsers = function() {
-  return new Promise((resolve, reject) => {
-    this.find((err, docs) => {
-      if(err) {
-        console.error(err)
-        return reject(err)
-      }
-      
-      resolve(docs)
-    })
-  })
-}
-
-const User = mongoose.model("User", userSchema);
-// export default User;
-// module.exports = mongoose.model("User", this.userSchema);
+//Export model
+module.exports = mongoose.model("User", userSchema);
