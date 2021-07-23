@@ -1,27 +1,64 @@
 // database
+var mongoose = require("mongoose");
+const express = require("express");
+// let userShema = require("./models/user");
+const app = express();
+var port = 4000;
+var uri = "mongodb+srv://a:a@cluster0.2ariu.mongodb.net/Cluster0?retryWrites=true&w=majority";
 
-// const { MongoClient } = require("mongodb");
-// const uri =
-//   "mongodb+srv://a:a@cluster0.2ariu.mongodb.net/Cluster0?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-// client.connect((err) => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   client.close();
-// });
+mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true });
+const connection = mongoose.connection;
 
-var pets = exports.pets = [];
+connection.once("open", function () {
+  console.log("MongoDB database connection established successfully");
+});
 
-pets.push({ name: 'Tobi', id: 0 });
-pets.push({ name: 'Loki', id: 1 });
-pets.push({ name: 'Jane', id: 2 });
-pets.push({ name: 'Raul', id: 3 });
+app.listen(port, function () {
+  console.log("Server is running on Port: " + port);
+});
 
-var users = exports.users = [];
+const userSchema = new mongoose.Schema({
+  first_name: {
+    type: String,
+    unique: false,
+    required: true,
+  },
+  last_name: {
+    type: String,
+    unique: false,
+    required: true,
+  },
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+  },
+  phone: {
+    type: String,
+    unique: true,
+    required: false,
+  },
+});
 
-users.push({ name: 'TJ', pets: [pets[0], pets[1], pets[2]], id: 0  });
-users.push({ name: 'Guillermo', pets: [pets[3]], id: 1 });
-users.push({ name: 'Nathan', pets: [], id: 2 });
+const User = mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema);
+
+User
+  .find()
+  .then(doc => {
+    console.log(doc)
+  })
+  .catch(err => {
+    console.error(err)
+  })
+// const db = async () => {
+//   const allUsers = await User.find().all();
+//   console.log(allUsers);
+//   return allUsers.json();
+// };
+
+var users = exports.users = async () => {
+    const allUsers = await User.find().all();
+    console.log(allUsers);
+    return allUsers.json();
+  };
