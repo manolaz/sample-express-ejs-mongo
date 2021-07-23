@@ -8,10 +8,10 @@
 </head>
 <body>
   <h1>Users</h1>
-  <p>Click a user below to view their pets.</p>
+  <p>Click a user below to view their contact.</p>
   <ul>
     {{#each users}}
-      <li><a href="/user/{{id}}">{{name}}</a></li>
+      <li><a href="/user/{{_id}}">{{email}}</a></li>
     {{/each}}
   </ul>
 </body>
