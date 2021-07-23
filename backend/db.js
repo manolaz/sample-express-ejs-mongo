@@ -1,7 +1,6 @@
 // database
 var mongoose = require("mongoose");
 const express = require("express");
-// let userShema = require("./models/user");
 const app = express();
 var port = 4000;
 var uri = "mongodb+srv://a:a@cluster0.2ariu.mongodb.net/Cluster0?retryWrites=true&w=majority";
@@ -17,31 +16,7 @@ app.listen(port, function () {
   console.log("Server is running on Port: " + port);
 });
 
-const userSchema = new mongoose.Schema({
-  first_name: {
-    type: String,
-    unique: false,
-    required: true,
-  },
-  last_name: {
-    type: String,
-    unique: false,
-    required: true,
-  },
-  email: {
-    type: String,
-    unique: true,
-    required: true,
-  },
-  phone: {
-    type: String,
-    unique: true,
-    required: false,
-  },
-});
-
-const User = mongoose.model("User", userSchema);
-module.exports = mongoose.model("User", userSchema);
+const User = require("./models/user");
 
 User
   .find()
@@ -57,8 +32,8 @@ User
 //   return allUsers.json();
 // };
 
-var users = exports.users = async () => {
-    const allUsers = await User.find().all();
-    console.log(allUsers);
-    return allUsers.json();
-  };
+// var users = exports.users = async () => {
+//     const allUsers = await User.find().all();
+//     console.log(allUsers);
+//     return allUsers.json();
+//   };
